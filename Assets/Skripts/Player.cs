@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private List<GameObject> used_Platforms = new List<GameObject>();
     [SerializeField]
     private GameObject old_Platform;//старая платформа для определения координат новой
+    public Camera camera_Main;
     private bool left=false;//возможность перемещаться в лево
     private bool right=false;//возможность перемещаться в право
     [SerializeField]
@@ -28,7 +29,11 @@ public class Player : MonoBehaviour
         if(other.transform.tag=="Platform")//спрашиваем столкнулся ли он с платформой
         {
             rb_Player.AddForce(transform.up*jump_Power);//даём ускорение для прыжка 
-            Instante_Platform();
+            if(other.gameObject.GetComponent<Platform>().activ==false)
+            {
+                Instante_Platform();//создаём платформу
+                other.gameObject.GetComponent<Platform>().Activiti_Platform();
+            }
         }
     }
     public void Button_Left_On()//если мы зажали левую часть экрана 
@@ -70,7 +75,7 @@ public class Player : MonoBehaviour
     private void Instante_Platform()
     {
         Platform_Position();
-        old_Platform=Instantiate(platforms[Random_Platform(rand)],new Vector3(trans(rand),old_Platform.transform.position.y+1,0),Quaternion.identity);
+        old_Platform=Instantiate(platforms[Random_Platform(rand)],new Vector3(Platform_Position(rand),old_Platform.transform.position.y+1.5f),Quaternion.identity);
         used_Platforms.Add(old_Platform);
     }
     private float Platform_Position()//метод для обозначения позиции платформы 
@@ -145,7 +150,7 @@ public class Player : MonoBehaviour
         }
         return 0;
     }
-    private float trans(int _rand)
+    private float Platform_Position(int _rand)//преабразовывает рандомноый сектар на экране в координаты
     {
         switch(_rand)
         {
@@ -164,7 +169,7 @@ public class Player : MonoBehaviour
         }
         return 0;
     }
-    private int Random_Platform(int _rand)
+    private int Random_Platform(int _rand)//выберает рандомную платформу из списка
     {
         if(_rand==0||_rand==5)
         {
@@ -173,8 +178,32 @@ public class Player : MonoBehaviour
         else
             return Random.Range(0,platforms.Length);
     }
+    private void Camera_Muving()//метод который заставляет нашу камеру плавно тащится за игроком
+    {
+        if(camera_Main.transform.position.y<transform.position.y)
+        {
+            camera_Main.transform.position +=new Vector3(0,1.5f*Time.deltaTime,0);
+        }
+    }
+    private void Velosity()
+    {
+        if(rb_Player.velocity.y>=6)
+            rb_Player.velocity=new Vector2(0,5);
+    }
+    private void Platform_Controler()//контролирует количество платформ на сцене
+    {
+         if(used_Platforms.Count>5)
+        {
+            Destroy(used_Platforms[0]);
+            used_Platforms.RemoveAt(0);
+            used_Platforms.RemoveAll (x => x == null);
+        } 
+    }
     private void FixedUpdate()//фиксированое обновление 
     {
         Moving();//вызываем мметод для перемещения
+        Camera_Muving();//двигаем камеру за игроком
+        Velosity();//ограничиваем силу прыжка
+        Platform_Controler();//контролирует количество платформ на сцене
     }
 }
