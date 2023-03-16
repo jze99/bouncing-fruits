@@ -1,0 +1,180 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Player : MonoBehaviour
+{
+    private Rigidbody2D rb_Player;//физический элемент нашего игрока 
+    [SerializeField]
+    float jump_Power;//сила с которой прыгает игрок
+    [SerializeField]
+    private GameObject[] platforms;//список существующих платформ которые можно создать 
+    [SerializeField]
+    private List<GameObject> used_Platforms = new List<GameObject>();
+    [SerializeField]
+    private GameObject old_Platform;//старая платформа для определения координат новой
+    private bool left=false;//возможность перемещаться в лево
+    private bool right=false;//возможность перемещаться в право
+    [SerializeField]
+    private float speed;//скорость перемещения по горизонтали
+    private float height;
+    private int rand;
+    private void Start()
+    {
+        rb_Player=gameObject.GetComponent<Rigidbody2D>();//находим у игроака физический элемент  
+    }
+    private void OnCollisionEnter2D(Collision2D other)//эвент когда наш игрок с чемнибть сталкивается 
+    {
+        if(other.transform.tag=="Platform")//спрашиваем столкнулся ли он с платформой
+        {
+            rb_Player.AddForce(transform.up*jump_Power);//даём ускорение для прыжка 
+            Instante_Platform();
+        }
+    }
+    public void Button_Left_On()//если мы зажали левую часть экрана 
+    {
+        left=true;
+    }
+    public void Button_Left_Off()//если мы отпустили левую часть экрана 
+    {
+        left=false;
+    }
+    public void Button_Right_On()//если мы зажали правую часть экрана 
+    {
+        right=true;
+    }
+     public void Button_Right_Off()//если мы отпустили правую часть экрана 
+    {
+        right=false;
+    }
+    private int Moving()//метод для перемещения нашего игрока 
+    {
+        if(left==true)//спрашиваем зажали ли мы левую часть экрана 
+        {
+            transform.position -= new Vector3(speed,0,0);//уменьшаем координаты нашего игрока для перемещения 
+            if(transform.position.x<=-3)//спрашиваем не начал ли наш игров вываливатся за экран 
+            {
+                transform.position = new Vector2(3,transform.position.y);//перемешаем нашего игрока в противоположную часть экрана 
+            }
+        }
+        else if (right==true)//если мы зажали правую часть экрана 
+        {
+            transform.position += new Vector3(speed,0,0);//увеличиваем координаты нашего игрока для перемещения
+            if(transform.position.x>=3)//спрашиваем не вывалился ли он за экран с право
+            {
+                transform.position = new Vector2(-3,transform.position.y);//перемещаем игрока в противоложную часть экрана 
+            }
+        }
+        return 0;//возвращаем 0
+    }
+    private void Instante_Platform()
+    {
+        Platform_Position();
+        old_Platform=Instantiate(platforms[Random_Platform(rand)],new Vector3(trans(rand),old_Platform.transform.position.y+1,0),Quaternion.identity);
+        used_Platforms.Add(old_Platform);
+    }
+    private float Platform_Position()//метод для обозначения позиции платформы 
+    {
+        rand = Random.Range(0,5);//находим рандомное место 
+        switch(rand)
+        {
+            case 0:
+                if(old_Platform.transform.position.x!=-2.5)
+                    return rand;
+                else
+                {
+                    rand++;
+                    return rand;
+                }
+            case 1:
+                if(old_Platform.transform.position.x!=-1.5)
+                    return rand;
+                else
+                {
+                    int i = Random.Range(0,1);
+                    if(i==0)
+                        rand--;
+                    else if(i==1)
+                        rand++;
+                    return rand;    
+                }
+            case 2:
+                if(old_Platform.transform.position.x!=-0.5)
+                    return rand;
+                else
+                {
+                    int i = Random.Range(0,1);
+                    if(i==0) 
+                        rand--;
+                    else if(i==1)
+                        rand++;
+                    return rand;    
+                }
+            case 3:
+                if(old_Platform.transform.position.x!=0.5)
+                    return rand;
+                else
+                {
+                    int i = Random.Range(0,1);
+                    if(i==0)  
+                        rand--;
+                    else if(i==1)
+                        rand++;
+                    return rand;    
+                }
+            case 4:
+                if(old_Platform.transform.position.x!=1.5)
+                    return rand;
+                else
+                {
+                    int i = Random.Range(0,1);
+                    if(i==0)   
+                        rand--;
+                    else if(i==1)
+                        rand++;
+                    return rand;    
+                }
+            case 5:
+                if(old_Platform.transform.position.x!=2.5)
+                    return rand;
+                else
+                {
+                    rand--;
+                    return rand;
+                }
+        }
+        return 0;
+    }
+    private float trans(int _rand)
+    {
+        switch(_rand)
+        {
+            case 0:
+                return -2.5f;
+            case 1:
+                return -1.5f;
+            case 2:
+                return -0.5f;
+            case 3: 
+                return 0.5f;
+            case 4:
+                return 1.5f;
+            case 5:
+                return 2.5f;
+        }
+        return 0;
+    }
+    private int Random_Platform(int _rand)
+    {
+        if(_rand==0||_rand==5)
+        {
+            return 0;
+        }
+        else
+            return Random.Range(0,platforms.Length);
+    }
+    private void FixedUpdate()//фиксированое обновление 
+    {
+        Moving();//вызываем мметод для перемещения
+    }
+}
