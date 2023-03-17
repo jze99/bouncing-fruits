@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -18,11 +19,15 @@ public class Player : MonoBehaviour
     private bool right=false;//возможность перемещаться в право
     [SerializeField]
     private float speed;//скорость перемещения по горизонтали
-    private float height;
-    private int rand;
+    private int rand;//рандомный сектор на экране
+    private Save_Load save_Load;//класс для сохранения изагрузки данных
+    private int score;
+
     private void Start()
     {
-        rb_Player=gameObject.GetComponent<Rigidbody2D>();//находим у игроака физический элемент  
+        rb_Player=gameObject.GetComponent<Rigidbody2D>();//находим у игроака физический элемент
+        save_Load=gameObject.GetComponent<Save_Load>();//находим компонент сохранения и загрузки
+        save_Load.Load_Record_Score();
     }
     private void OnCollisionEnter2D(Collision2D other)//эвент когда наш игрок с чемнибть сталкивается 
     {
@@ -32,7 +37,8 @@ public class Player : MonoBehaviour
             if(other.gameObject.GetComponent<Platform>().activ==false)
             {
                 Instante_Platform();//создаём платформу
-                other.gameObject.GetComponent<Platform>().Activiti_Platform();
+                other.gameObject.GetComponent<Platform>().Activiti_Platform();//меняем индикатор активности платформы
+                save_Load.Save_Record_Score(score++);
             }
         }
     }

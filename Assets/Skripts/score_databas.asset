@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7b7884c4d14a64898fd854274ae428, type: 3}
   m_Name: score_databas
   m_EditorClassIdentifier: 
-  record_Score: 0
-  current_Account: 0
+  record_Score: 28
+  current_Account: 1
