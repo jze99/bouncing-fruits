@@ -5,7 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public bool activ=false;
-    public GameObject Player;
+    private GameObject Player;
     private void Start() 
     {
         Player=GameObject.FindGameObjectWithTag("Player");    

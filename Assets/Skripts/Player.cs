@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject[] platforms;//список существующих платформ которые можно создать 
     [SerializeField]
-    private List<GameObject> used_Platforms = new List<GameObject>();
+    private List<GameObject> used_Platforms = new List<GameObject>();//список используемых платформ
     [SerializeField]
     private GameObject old_Platform;//старая платформа для определения координат новой
     public Camera camera_Main;
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
             {
                 Instante_Platform();//создаём платформу
                 other.gameObject.GetComponent<Platform>().Activiti_Platform();//меняем индикатор активности платформы
-                save_Load.Save_Record_Score(score++);
+                save_Load.Save_Record_Score(score++);//передаём счёт в другой метод для сохранения и вывода на экран
             }
         }
     }
@@ -81,8 +81,8 @@ public class Player : MonoBehaviour
     private void Instante_Platform()
     {
         Platform_Position();
-        old_Platform=Instantiate(platforms[Random_Platform(rand)],new Vector3(Platform_Position(rand),old_Platform.transform.position.y+1.5f),Quaternion.identity);
-        used_Platforms.Add(old_Platform);
+        old_Platform=Instantiate(platforms[Random_Platform(rand)],new Vector3(Platform_Position(rand),old_Platform.transform.position.y+1.5f),Quaternion.identity);//создаём и назначаем старую плтформу как новую
+        used_Platforms.Add(old_Platform);//добавляем новую платформу в масив для контроля количества платформ
     }
     private float Platform_Position()//метод для обозначения позиции платформы 
     {
