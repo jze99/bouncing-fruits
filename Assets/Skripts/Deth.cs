@@ -10,4 +10,5 @@ public class Deth : MonoBehaviour
             SceneManager.LoadScene(2);
         }    
     }
+    
 }

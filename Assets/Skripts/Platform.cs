@@ -6,6 +6,8 @@ public class Platform : MonoBehaviour
 {
     public bool activ=false;
     private GameObject Player;
+    [SerializeField]
+    private Data_base data_Base;
     private void Start() 
     {
         Player=GameObject.FindGameObjectWithTag("Player");    

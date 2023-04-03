@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+    [SerializeField]
+    private Data_base data_Base;
     private static GameObject panel;
     [SerializeField]
     private bool is_Panel;
@@ -30,5 +32,13 @@ public class Menu : MonoBehaviour
     public void Go_To_Menu()
     {
         SceneManager.LoadScene(0);
+    }
+    public void Shop()
+    {
+        
+    }
+    public void Exit()
+    {
+
     }
 }

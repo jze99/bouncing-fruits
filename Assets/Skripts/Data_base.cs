@@ -6,4 +6,9 @@ public class Data_base : ScriptableObject
 {
     public int record_Score;
     public int current_Account;
+    public int platform_Red;
+    public int platform_Blu;
+    public int platform_Gren;
+    public int money;
+    public Sprite skin;
 }

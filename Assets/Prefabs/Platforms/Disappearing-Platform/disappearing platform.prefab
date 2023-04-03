@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 7891773963687782014}
   - component: {fileID: 7891773963687782015}
   - component: {fileID: 7891773963687782008}
-  - component: {fileID: 5983014514419499191}
   - component: {fileID: -8925057905861413811}
   m_Layer: 0
   m_Name: disappearing platform
-  m_TagString: Platform
+  m_TagString: gren
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,18 +112,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75303054, y: 0.08759105}
   m_EdgeRadius: 0
---- !u!114 &5983014514419499191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7891773963687782010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 199723bcac7090a4b9661c45cb6b89be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-8925057905861413811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activ: 0
+  data_Base: {fileID: 11400000, guid: 0da1a7da587949242a8100dc6f5fc06f, type: 2}

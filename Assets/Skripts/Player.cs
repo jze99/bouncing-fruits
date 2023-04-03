@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     private int rand;//рандомный сектор на экране
     private Save_Load save_Load;//класс для сохранения изагрузки данных
     private int score;
+    private string name_Platform;
+    [SerializeField]
+    private Data_base data_Base;
+    public Sprite skin;
 
     private void Start()
     {
@@ -31,7 +35,8 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)//эвент когда наш игрок с чемнибть сталкивается 
     {
-        if(other.transform.tag=="Platform")//спрашиваем столкнулся ли он с платформой
+        name_Platform = other.transform.tag;
+        if(name_Platform=="red"||name_Platform=="gren"||name_Platform=="blu")//спрашиваем столкнулся ли он с платформой
         {
             rb_Player.AddForce(transform.up*jump_Power);//даём ускорение для прыжка 
             if(other.gameObject.GetComponent<Platform>().activ==false)
@@ -39,6 +44,18 @@ public class Player : MonoBehaviour
                 Instante_Platform();//создаём платформу
                 other.gameObject.GetComponent<Platform>().Activiti_Platform();//меняем индикатор активности платформы
                 save_Load.Save_Record_Score(score++);//передаём счёт в другой метод для сохранения и вывода на экран
+                switch (name_Platform)//спрашиваем на какой конкретно платформе мы находимся
+                {
+                    case "red":
+                        data_Base.platform_Red++;
+                        break;
+                    case "gren":
+                        data_Base.platform_Gren++;
+                        break;
+                    case "blu":
+                        data_Base.platform_Blu++;
+                        break;
+                }
             }
         }
     }
@@ -211,5 +228,9 @@ public class Player : MonoBehaviour
         Camera_Muving();//двигаем камеру за игроком
         Velosity();//ограничиваем силу прыжка
         Platform_Controler();//контролирует количество платформ на сцене
+    }
+    private void LateUpdate()
+    {
+
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3282983014176704776}
   m_Layer: 0
   m_Name: swiming-platform
-  m_TagString: Platform
+  m_TagString: blu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activ: 0
+  data_Base: {fileID: 0}
 --- !u!95 &3282983014176704776
 Animator:
   serializedVersion: 5
@@ -146,6 +147,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6639073792683339129
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +159,7 @@ GameObject:
   - component: {fileID: 3925854382736763802}
   m_Layer: 0
   m_Name: karkas
-  m_TagString: Untagged
+  m_TagString: blu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
