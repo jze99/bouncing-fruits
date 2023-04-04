@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour
     private bool is_Panel;
     private void Start() 
     {
+        data_Base.money=PlayerPrefs.GetInt("money");//загружаем базу данных с деньгами 
         if(is_Panel)
         {
         panel = gameObject.transform.GetChild(5).gameObject;
@@ -35,7 +36,7 @@ public class Menu : MonoBehaviour
     }
     public void Shop()
     {
-        
+        SceneManager.LoadScene(3);
     }
     public void Exit()
     {

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/deth.unity
     guid: 0e5c240d2e8193146be476c5cd7d043b
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: b7284b74fc14b2842b2d4fb746c6b897
   m_configObjects: {}

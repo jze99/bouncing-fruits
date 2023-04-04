@@ -406,6 +406,7 @@ MonoBehaviour:
   camera_Main: {fileID: 477591446}
   speed: 0.1
   data_Base: {fileID: 11400000, guid: 0da1a7da587949242a8100dc6f5fc06f, type: 2}
+  skin: {fileID: 0}
 --- !u!114 &37917318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,7 +811,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 10
-  field of view: 60.024475
+  field of view: 62.944767
   orthographic: 0
   orthographic size: 5.3
   m_Depth: -1

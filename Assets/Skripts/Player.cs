@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
         rb_Player=gameObject.GetComponent<Rigidbody2D>();//находим у игроака физический элемент
         save_Load=gameObject.GetComponent<Save_Load>();//находим компонент сохранения и загрузки
         save_Load.Load_Record_Score();
+        skin=data_Base.skin;
+        gameObject.GetComponent<SpriteRenderer>().sprite=skin;
     }
     private void OnCollisionEnter2D(Collision2D other)//эвент когда наш игрок с чемнибть сталкивается 
     {

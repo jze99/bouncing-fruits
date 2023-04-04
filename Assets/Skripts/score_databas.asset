@@ -12,5 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7b7884c4d14a64898fd854274ae428, type: 3}
   m_Name: score_databas
   m_EditorClassIdentifier: 
-  record_Score: 28
-  current_Account: 1
+  record_Score: 46
+  current_Account: 0
+  platform_Red: 1
+  platform_Blu: 0
+  platform_Gren: 0
+  money: 0
+  skins:
+  - {fileID: 21300000, guid: b260d867dac9aa846b8dedc00db66584, type: 3}
+  - {fileID: 21300000, guid: 4065588f2725eb145a1b9406ba2daee1, type: 3}
+  - {fileID: 21300000, guid: b260d867dac9aa846b8dedc00db66584, type: 3}
+  - {fileID: 21300000, guid: 4065588f2725eb145a1b9406ba2daee1, type: 3}
+  - {fileID: 21300000, guid: b260d867dac9aa846b8dedc00db66584, type: 3}
+  skin: {fileID: 21300000, guid: 4065588f2725eb145a1b9406ba2daee1, type: 3}
+  save_Skin: 2

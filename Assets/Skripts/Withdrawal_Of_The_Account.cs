@@ -14,12 +14,13 @@ public class Withdrawal_Of_The_Account : MonoBehaviour
         score.text="score: "+data_Base.current_Account;
         record_Score.text="record: "+data_Base.record_Score;
         money_Text.text="dubl: "+Money(data_Base.platform_Red,data_Base.platform_Gren,data_Base.platform_Blu);
-        PlayerPrefs.GetInt("money",data_Base.money);
+        
     }
     private int Money(int _red,int _grean,int _blu)
     {
         int m =(Mathf.FloorToInt(_red*0.8f)+Mathf.FloorToInt(_grean*1.2f)+Mathf.FloorToInt(_blu*1.5f));
         data_Base.money += m;
+        PlayerPrefs.SetInt("money",data_Base.money);
         return m;
     }
 }
