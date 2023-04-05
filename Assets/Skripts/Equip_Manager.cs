@@ -5,20 +5,22 @@ using UnityEngine;
 public class Equip_Manager : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> elemnt_Shop=new List<GameObject>();
+    private GameObject[] elemnt_Shop;//массив с объектами магазина 
     [SerializeField]
     private Data_base data_Base;
-    private void Start() 
+    private void Awake() 
     {
-        for (int i = 0; i < elemnt_Shop.Count; i++)
         {
-            elemnt_Shop[i].GetComponent<Shope>().equip=PlayerPrefs.GetInt("activ"+i);
-            elemnt_Shop[i].GetComponent<Shope>().buy=PlayerPrefs.GetInt("buy"+i);
+            for (int i = 0; i < elemnt_Shop.Length; i++)
+            {
+                elemnt_Shop[i].GetComponent<Shope>().equip=PlayerPrefs.GetInt("activ"+i);
+                elemnt_Shop[i].GetComponent<Shope>().buy=PlayerPrefs.GetInt("buy"+i);
+            }
         }
     }
     public void Set_Equip(int _me_Element)
     {
-        for(int i=0;i<elemnt_Shop.Count;i++)
+        for(int i=0;i<elemnt_Shop.Length;i++)
         {
             if(elemnt_Shop[i].GetComponent<Shope>().equip==1)
             {

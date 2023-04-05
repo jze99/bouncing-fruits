@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
     private void Velosity()
     {
         if(rb_Player.velocity.y>=6)
-            rb_Player.velocity=new Vector2(0,5);
+            rb_Player.velocity=new Vector2(0,5.5f);
     }
     private void Platform_Controler()//контролирует количество платформ на сцене
     {
@@ -230,9 +230,5 @@ public class Player : MonoBehaviour
         Camera_Muving();//двигаем камеру за игроком
         Velosity();//ограничиваем силу прыжка
         Platform_Controler();//контролирует количество платформ на сцене
-    }
-    private void LateUpdate()
-    {
-
     }
 }
